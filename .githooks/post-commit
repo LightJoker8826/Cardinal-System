@@ -1,0 +1,11 @@
+#!/bin/sh
+# Append commit metadata to claude-memory.md (Cardinal-Sandbox root).
+ROOT="$(git rev-parse --show-toplevel)"
+MEMORY="$ROOT/claude-memory.md"
+if [ ! -f "$MEMORY" ]; then
+  exit 0
+fi
+HASH=$(git rev-parse --short HEAD)
+MSG=$(git log -1 --pretty=%s)
+TS=$(git log -1 --pretty=%cI)
+echo "| $TS | $HASH | $MSG |" >> "$MEMORY"

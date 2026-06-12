@@ -1,0 +1,40 @@
+{
+  "_comment": "Skilled Experience Catalogue — ordered enemy AI policy spectrum. Enemies run weighted blends of two adjacent policies; ratios shift with player performance.",
+  "spectrum": ["passive", "standard", "aggressive", "adaptive"],
+  "policies": {
+    "passive": {
+      "attack_damage_mult": 0.8,
+      "attack_window_s": 1.2,
+      "defense_chance": 0.10,
+      "flee_threshold_hp_pct": 0.35,
+      "combo_patterns": [["strike"], ["strike", "recover"]]
+    },
+    "standard": {
+      "attack_damage_mult": 1.0,
+      "attack_window_s": 0.9,
+      "defense_chance": 0.20,
+      "flee_threshold_hp_pct": 0.15,
+      "combo_patterns": [["strike"], ["strike", "strike"], ["feint", "strike"]]
+    },
+    "aggressive": {
+      "attack_damage_mult": 1.25,
+      "attack_window_s": 0.6,
+      "defense_chance": 0.15,
+      "flee_threshold_hp_pct": 0.0,
+      "combo_patterns": [["strike", "strike"], ["lunge", "strike", "strike"], ["feint", "lunge", "strike"]]
+    },
+    "adaptive": {
+      "attack_damage_mult": 1.35,
+      "attack_window_s": 0.45,
+      "defense_chance": 0.30,
+      "flee_threshold_hp_pct": 0.0,
+      "combo_patterns": [["feint", "feint", "strike"], ["lunge", "strike", "counter"], ["counter", "strike", "strike"]]
+    }
+  },
+  "defaults": {
+    "Goblin":      {"policy_low": "passive",    "policy_high": "standard",   "blend_ratio": 0.2},
+    "Orc":         {"policy_low": "standard",   "policy_high": "aggressive", "blend_ratio": 0.3},
+    "Dark Knight": {"policy_low": "aggressive", "policy_high": "adaptive",   "blend_ratio": 0.25},
+    "Shadow Boss": {"policy_low": "aggressive", "policy_high": "adaptive",   "blend_ratio": 0.6}
+  }
+}

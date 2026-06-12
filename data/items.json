@@ -1,0 +1,130 @@
+[
+  {
+    "name": "Iron Sword",
+    "damage": 27,
+    "crit_chance": 0.1,
+    "crit_mult": 1.5,
+    "type": "weapon",
+    "value": 100,
+    "rarity": "common",
+    "enabled": true
+  },
+  {
+    "name": "Silver Dagger",
+    "damage": 16,
+    "crit_chance": 0.35,
+    "crit_mult": 2.2,
+    "type": "weapon",
+    "value": 140,
+    "rarity": "common",
+    "enabled": true
+  },
+  {
+    "name": "Cursed Blade",
+    "damage": 25,
+    "crit_chance": 0.0925,
+    "crit_mult": 1.0264,
+    "type": "weapon",
+    "value": 660,
+    "rarity": "rare",
+    "enabled": true
+  },
+  {
+    "name": "God Sword",
+    "damage": 25000,
+    "crit_chance": 0.5,
+    "crit_mult": 3.0,
+    "type": "weapon",
+    "value": 99999,
+    "rarity": "legendary",
+    "enabled": false
+  },
+  {
+    "name": "Wooden Shield",
+    "damage": 0,
+    "crit_chance": 0.0,
+    "crit_mult": 1.0,
+    "type": "armor",
+    "defense": 8,
+    "value": 60,
+    "rarity": "common",
+    "enabled": true
+  },
+  {
+    "name": "Health Potion",
+    "damage": 0,
+    "crit_chance": 0.0,
+    "crit_mult": 1.0,
+    "type": "consumable",
+    "heal": 50,
+    "value": 30,
+    "rarity": "common",
+    "enabled": true
+  },
+  {
+    "name": "Elixir",
+    "damage": 0,
+    "crit_chance": 0.0,
+    "crit_mult": 1.0,
+    "type": "consumable",
+    "heal": 999,
+    "value": 250,
+    "rarity": "rare",
+    "enabled": true
+  },
+  {
+    "name": "Shadow Blade",
+    "damage": 22,
+    "crit_chance": 0.1283,
+    "crit_mult": 1.2318,
+    "type": "weapon",
+    "value": 900,
+    "rarity": "epic",
+    "enabled": true
+  },
+  {
+    "name": "Forest Bow",
+    "damage": 12,
+    "crit_chance": 0.1116,
+    "crit_mult": 1.0041,
+    "type": "weapon",
+    "subtype": "ranged",
+    "value": 120,
+    "rarity": "common",
+    "enabled": true
+  },
+  {
+    "name": "Flame Staff",
+    "damage": 18,
+    "crit_chance": 0.0837,
+    "crit_mult": 1.1157,
+    "type": "weapon",
+    "subtype": "magic",
+    "value": 520,
+    "rarity": "rare",
+    "enabled": true
+  },
+  {
+    "name": "Mithril Armor",
+    "damage": 0,
+    "crit_chance": 0.0,
+    "crit_mult": 1.0,
+    "type": "armor",
+    "defense": 22,
+    "value": 1400,
+    "rarity": "epic",
+    "enabled": true
+  },
+  {
+    "name": "Cursed Ring",
+    "damage": 0,
+    "crit_chance": 0.0,
+    "crit_mult": 1.0,
+    "type": "armor",
+    "defense": -5,
+    "debuff": "hp_drain",
+    "value": 380,
+    "rarity": "rare",
+    "enabled": true
+  }
+]

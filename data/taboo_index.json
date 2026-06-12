@@ -1,0 +1,43 @@
+{
+  "_comment": "The Taboo Index — Cardinal's law system. The Sub-Process enforces every rule here on every mutation; the game enforces zone laws at runtime.",
+  "version": 1,
+  "item_laws": {
+    "damage": {"min": 0, "max": 500},
+    "crit_chance": {"min": 0.0, "max": 0.75},
+    "crit_mult": {"min": 1.0, "max": 5.0},
+    "value": {"min": 0, "max": 100000},
+    "heal": {"min": 0, "max": 1000}
+  },
+  "enemy_laws": {
+    "damage": {"min": 1, "max": 300},
+    "hp": {"min": 1, "max": 5000},
+    "reward_gold": {"min": 0, "max": 2000},
+    "attack_window_min_s": 0.15
+  },
+  "player_laws": {
+    "max_level": 100,
+    "max_gold": 10000000,
+    "max_hp": 9999
+  },
+  "patch_laws": {
+    "max_delta_pct_per_cycle": 0.08,
+    "anomaly_win_rate": 0.95,
+    "anomaly_stat_sigma": 4.0,
+    "forbidden_code_patterns": [
+      "os.system",
+      "subprocess.Popen",
+      "eval(",
+      "exec(",
+      "__import__",
+      "shutil.rmtree",
+      "open('/etc",
+      "socket."
+    ],
+    "protected_fields": ["name", "type", "rarity"]
+  },
+  "safe_zones": [
+    {"name": "Town of Beginnings", "x_min": 0, "x_max": 2, "y_min": 0, "y_max": 2},
+    {"name": "Floor Sanctuary", "x_min": 8, "x_max": 9, "y_min": 8, "y_max": 9}
+  ],
+  "immortal_objects": ["Teleport Gate", "Town Wall", "Quest Giver"]
+}

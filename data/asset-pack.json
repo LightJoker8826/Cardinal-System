@@ -1,0 +1,485 @@
+{
+  "_comment": "Generated asset ID registry. Every asset referenced by a generated quest MUST be registered here before the Sub-Process will approve the quest. This prevents hallucinated file paths.",
+  "assets": [
+    {
+      "id": "quest::the_trial_of_ragnar_k",
+      "quest": "the_trial_of_ragnar_k",
+      "registered_at": "2026-06-12T03:43:40.673730+00:00"
+    },
+    {
+      "id": "module::quest_assets_the_trial_of_ragnar_k",
+      "quest": "the_trial_of_ragnar_k",
+      "registered_at": "2026-06-12T03:43:40.673730+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_ragnar_k::anomaly_guardian",
+      "quest": "the_trial_of_ragnar_k",
+      "registered_at": "2026-06-12T03:43:40.673730+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_ragnar_k::avatar_of_ragnar_k",
+      "quest": "the_trial_of_ragnar_k",
+      "registered_at": "2026-06-12T03:43:40.673730+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_ragnar_k::the_chronicler",
+      "quest": "the_trial_of_ragnar_k",
+      "registered_at": "2026-06-12T03:43:40.673730+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_ragnar_k::lost_scout",
+      "quest": "the_trial_of_ragnar_k",
+      "registered_at": "2026-06-12T03:43:40.673730+00:00"
+    },
+    {
+      "id": "item::the_trial_of_ragnar_k::relic_of_ragnar_k",
+      "quest": "the_trial_of_ragnar_k",
+      "registered_at": "2026-06-12T03:43:40.673730+00:00"
+    },
+    {
+      "id": "item::the_trial_of_ragnar_k::health_potion",
+      "quest": "the_trial_of_ragnar_k",
+      "registered_at": "2026-06-12T03:43:40.673730+00:00"
+    },
+    {
+      "id": "quest::the_trial_of_vikings",
+      "quest": "the_trial_of_vikings",
+      "registered_at": "2026-06-12T05:34:45.654813+00:00"
+    },
+    {
+      "id": "module::quest_assets_the_trial_of_vikings",
+      "quest": "the_trial_of_vikings",
+      "registered_at": "2026-06-12T05:34:45.654813+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_vikings::anomaly_guardian",
+      "quest": "the_trial_of_vikings",
+      "registered_at": "2026-06-12T05:34:45.654813+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_vikings::avatar_of_vikings",
+      "quest": "the_trial_of_vikings",
+      "registered_at": "2026-06-12T05:34:45.654813+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_vikings::the_chronicler",
+      "quest": "the_trial_of_vikings",
+      "registered_at": "2026-06-12T05:34:45.654813+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_vikings::lost_scout",
+      "quest": "the_trial_of_vikings",
+      "registered_at": "2026-06-12T05:34:45.654813+00:00"
+    },
+    {
+      "id": "item::the_trial_of_vikings::relic_of_vikings",
+      "quest": "the_trial_of_vikings",
+      "registered_at": "2026-06-12T05:34:45.654813+00:00"
+    },
+    {
+      "id": "item::the_trial_of_vikings::health_potion",
+      "quest": "the_trial_of_vikings",
+      "registered_at": "2026-06-12T05:34:45.654813+00:00"
+    },
+    {
+      "id": "quest::the_trial_of_murder_of_austin_metcalf",
+      "quest": "the_trial_of_murder_of_austin_metcalf",
+      "registered_at": "2026-06-12T05:40:03.100266+00:00"
+    },
+    {
+      "id": "module::quest_assets_the_trial_of_murder_of_austin_metcalf",
+      "quest": "the_trial_of_murder_of_austin_metcalf",
+      "registered_at": "2026-06-12T05:40:03.100266+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_murder_of_austin_metcalf::anomaly_guardian",
+      "quest": "the_trial_of_murder_of_austin_metcalf",
+      "registered_at": "2026-06-12T05:40:03.100266+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_murder_of_austin_metcalf::avatar_of_murder_of_austin_metcalf",
+      "quest": "the_trial_of_murder_of_austin_metcalf",
+      "registered_at": "2026-06-12T05:40:03.100266+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_murder_of_austin_metcalf::the_chronicler",
+      "quest": "the_trial_of_murder_of_austin_metcalf",
+      "registered_at": "2026-06-12T05:40:03.100266+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_murder_of_austin_metcalf::lost_scout",
+      "quest": "the_trial_of_murder_of_austin_metcalf",
+      "registered_at": "2026-06-12T05:40:03.100266+00:00"
+    },
+    {
+      "id": "item::the_trial_of_murder_of_austin_metcalf::relic_of_murder_of_austin_metcalf",
+      "quest": "the_trial_of_murder_of_austin_metcalf",
+      "registered_at": "2026-06-12T05:40:03.100266+00:00"
+    },
+    {
+      "id": "item::the_trial_of_murder_of_austin_metcalf::health_potion",
+      "quest": "the_trial_of_murder_of_austin_metcalf",
+      "registered_at": "2026-06-12T05:40:03.100266+00:00"
+    },
+    {
+      "id": "quest::the_trial_of_2026_peruvian_general_election",
+      "quest": "the_trial_of_2026_peruvian_general_election",
+      "registered_at": "2026-06-12T05:40:33.922434+00:00"
+    },
+    {
+      "id": "module::quest_assets_the_trial_of_2026_peruvian_general_election",
+      "quest": "the_trial_of_2026_peruvian_general_election",
+      "registered_at": "2026-06-12T05:40:33.922434+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_2026_peruvian_general_election::anomaly_guardian",
+      "quest": "the_trial_of_2026_peruvian_general_election",
+      "registered_at": "2026-06-12T05:40:33.922434+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_2026_peruvian_general_election::avatar_of_2026_peruvian_general_election",
+      "quest": "the_trial_of_2026_peruvian_general_election",
+      "registered_at": "2026-06-12T05:40:33.922434+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_2026_peruvian_general_election::the_chronicler",
+      "quest": "the_trial_of_2026_peruvian_general_election",
+      "registered_at": "2026-06-12T05:40:33.922434+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_2026_peruvian_general_election::lost_scout",
+      "quest": "the_trial_of_2026_peruvian_general_election",
+      "registered_at": "2026-06-12T05:40:33.922434+00:00"
+    },
+    {
+      "id": "item::the_trial_of_2026_peruvian_general_election::relic_of_2026_peruvian_general_election",
+      "quest": "the_trial_of_2026_peruvian_general_election",
+      "registered_at": "2026-06-12T05:40:33.922434+00:00"
+    },
+    {
+      "id": "item::the_trial_of_2026_peruvian_general_election::health_potion",
+      "quest": "the_trial_of_2026_peruvian_general_election",
+      "registered_at": "2026-06-12T05:40:33.922434+00:00"
+    },
+    {
+      "id": "quest::the_trial_of_the_social_reckoning",
+      "quest": "the_trial_of_the_social_reckoning",
+      "registered_at": "2026-06-12T05:42:36.631441+00:00"
+    },
+    {
+      "id": "module::quest_assets_the_trial_of_the_social_reckoning",
+      "quest": "the_trial_of_the_social_reckoning",
+      "registered_at": "2026-06-12T05:42:36.631441+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_the_social_reckoning::anomaly_guardian",
+      "quest": "the_trial_of_the_social_reckoning",
+      "registered_at": "2026-06-12T05:42:36.631441+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_the_social_reckoning::avatar_of_the_social_reckoning",
+      "quest": "the_trial_of_the_social_reckoning",
+      "registered_at": "2026-06-12T05:42:36.631441+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_the_social_reckoning::the_chronicler",
+      "quest": "the_trial_of_the_social_reckoning",
+      "registered_at": "2026-06-12T05:42:36.631441+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_the_social_reckoning::lost_scout",
+      "quest": "the_trial_of_the_social_reckoning",
+      "registered_at": "2026-06-12T05:42:36.631441+00:00"
+    },
+    {
+      "id": "item::the_trial_of_the_social_reckoning::relic_of_the_social_reckoning",
+      "quest": "the_trial_of_the_social_reckoning",
+      "registered_at": "2026-06-12T05:42:36.631441+00:00"
+    },
+    {
+      "id": "item::the_trial_of_the_social_reckoning::health_potion",
+      "quest": "the_trial_of_the_social_reckoning",
+      "registered_at": "2026-06-12T05:42:36.631441+00:00"
+    },
+    {
+      "id": "quest::the_trial_of_deaths_in_2026",
+      "quest": "the_trial_of_deaths_in_2026",
+      "registered_at": "2026-06-12T05:43:07.397326+00:00"
+    },
+    {
+      "id": "module::quest_assets_the_trial_of_deaths_in_2026",
+      "quest": "the_trial_of_deaths_in_2026",
+      "registered_at": "2026-06-12T05:43:07.397326+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_deaths_in_2026::anomaly_guardian",
+      "quest": "the_trial_of_deaths_in_2026",
+      "registered_at": "2026-06-12T05:43:07.397326+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_deaths_in_2026::avatar_of_deaths_in_2026",
+      "quest": "the_trial_of_deaths_in_2026",
+      "registered_at": "2026-06-12T05:43:07.397326+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_deaths_in_2026::the_chronicler",
+      "quest": "the_trial_of_deaths_in_2026",
+      "registered_at": "2026-06-12T05:43:07.397326+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_deaths_in_2026::lost_scout",
+      "quest": "the_trial_of_deaths_in_2026",
+      "registered_at": "2026-06-12T05:43:07.397326+00:00"
+    },
+    {
+      "id": "item::the_trial_of_deaths_in_2026::relic_of_deaths_in_2026",
+      "quest": "the_trial_of_deaths_in_2026",
+      "registered_at": "2026-06-12T05:43:07.397326+00:00"
+    },
+    {
+      "id": "item::the_trial_of_deaths_in_2026::health_potion",
+      "quest": "the_trial_of_deaths_in_2026",
+      "registered_at": "2026-06-12T05:43:07.397326+00:00"
+    },
+    {
+      "id": "quest::the_trial_of_obsession_2025_film",
+      "quest": "the_trial_of_obsession_2025_film",
+      "registered_at": "2026-06-12T05:43:38.170238+00:00"
+    },
+    {
+      "id": "module::quest_assets_the_trial_of_obsession_2025_film",
+      "quest": "the_trial_of_obsession_2025_film",
+      "registered_at": "2026-06-12T05:43:38.170238+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_obsession_2025_film::anomaly_guardian",
+      "quest": "the_trial_of_obsession_2025_film",
+      "registered_at": "2026-06-12T05:43:38.170238+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_obsession_2025_film::avatar_of_obsession_2025_film",
+      "quest": "the_trial_of_obsession_2025_film",
+      "registered_at": "2026-06-12T05:43:38.170238+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_obsession_2025_film::the_chronicler",
+      "quest": "the_trial_of_obsession_2025_film",
+      "registered_at": "2026-06-12T05:43:38.170238+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_obsession_2025_film::lost_scout",
+      "quest": "the_trial_of_obsession_2025_film",
+      "registered_at": "2026-06-12T05:43:38.170238+00:00"
+    },
+    {
+      "id": "item::the_trial_of_obsession_2025_film::relic_of_obsession_2025_film",
+      "quest": "the_trial_of_obsession_2025_film",
+      "registered_at": "2026-06-12T05:43:38.170238+00:00"
+    },
+    {
+      "id": "item::the_trial_of_obsession_2025_film::health_potion",
+      "quest": "the_trial_of_obsession_2025_film",
+      "registered_at": "2026-06-12T05:43:38.170238+00:00"
+    },
+    {
+      "id": "quest::the_trial_of_disclosure_day",
+      "quest": "the_trial_of_disclosure_day",
+      "registered_at": "2026-06-12T05:44:08.850579+00:00"
+    },
+    {
+      "id": "module::quest_assets_the_trial_of_disclosure_day",
+      "quest": "the_trial_of_disclosure_day",
+      "registered_at": "2026-06-12T05:44:08.850579+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_disclosure_day::anomaly_guardian",
+      "quest": "the_trial_of_disclosure_day",
+      "registered_at": "2026-06-12T05:44:08.850579+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_disclosure_day::avatar_of_disclosure_day",
+      "quest": "the_trial_of_disclosure_day",
+      "registered_at": "2026-06-12T05:44:08.850579+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_disclosure_day::the_chronicler",
+      "quest": "the_trial_of_disclosure_day",
+      "registered_at": "2026-06-12T05:44:08.850579+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_disclosure_day::lost_scout",
+      "quest": "the_trial_of_disclosure_day",
+      "registered_at": "2026-06-12T05:44:08.850579+00:00"
+    },
+    {
+      "id": "item::the_trial_of_disclosure_day::relic_of_disclosure_day",
+      "quest": "the_trial_of_disclosure_day",
+      "registered_at": "2026-06-12T05:44:08.850579+00:00"
+    },
+    {
+      "id": "item::the_trial_of_disclosure_day::health_potion",
+      "quest": "the_trial_of_disclosure_day",
+      "registered_at": "2026-06-12T05:44:08.850579+00:00"
+    },
+    {
+      "id": "quest::the_trial_of_michael_jackson",
+      "quest": "the_trial_of_michael_jackson",
+      "registered_at": "2026-06-12T05:44:39.533854+00:00"
+    },
+    {
+      "id": "module::quest_assets_the_trial_of_michael_jackson",
+      "quest": "the_trial_of_michael_jackson",
+      "registered_at": "2026-06-12T05:44:39.533854+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_michael_jackson::anomaly_guardian",
+      "quest": "the_trial_of_michael_jackson",
+      "registered_at": "2026-06-12T05:44:39.533854+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_michael_jackson::avatar_of_michael_jackson",
+      "quest": "the_trial_of_michael_jackson",
+      "registered_at": "2026-06-12T05:44:39.533854+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_michael_jackson::the_chronicler",
+      "quest": "the_trial_of_michael_jackson",
+      "registered_at": "2026-06-12T05:44:39.533854+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_michael_jackson::lost_scout",
+      "quest": "the_trial_of_michael_jackson",
+      "registered_at": "2026-06-12T05:44:39.533854+00:00"
+    },
+    {
+      "id": "item::the_trial_of_michael_jackson::relic_of_michael_jackson",
+      "quest": "the_trial_of_michael_jackson",
+      "registered_at": "2026-06-12T05:44:39.533854+00:00"
+    },
+    {
+      "id": "item::the_trial_of_michael_jackson::health_potion",
+      "quest": "the_trial_of_michael_jackson",
+      "registered_at": "2026-06-12T05:44:39.533854+00:00"
+    },
+    {
+      "id": "quest::the_trial_of_bharathiraja",
+      "quest": "the_trial_of_bharathiraja",
+      "registered_at": "2026-06-12T05:45:10.220382+00:00"
+    },
+    {
+      "id": "module::quest_assets_the_trial_of_bharathiraja",
+      "quest": "the_trial_of_bharathiraja",
+      "registered_at": "2026-06-12T05:45:10.220382+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_bharathiraja::anomaly_guardian",
+      "quest": "the_trial_of_bharathiraja",
+      "registered_at": "2026-06-12T05:45:10.220382+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_bharathiraja::avatar_of_bharathiraja",
+      "quest": "the_trial_of_bharathiraja",
+      "registered_at": "2026-06-12T05:45:10.220382+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_bharathiraja::the_chronicler",
+      "quest": "the_trial_of_bharathiraja",
+      "registered_at": "2026-06-12T05:45:10.220382+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_bharathiraja::lost_scout",
+      "quest": "the_trial_of_bharathiraja",
+      "registered_at": "2026-06-12T05:45:10.220382+00:00"
+    },
+    {
+      "id": "item::the_trial_of_bharathiraja::relic_of_bharathiraja",
+      "quest": "the_trial_of_bharathiraja",
+      "registered_at": "2026-06-12T05:45:10.220382+00:00"
+    },
+    {
+      "id": "item::the_trial_of_bharathiraja::health_potion",
+      "quest": "the_trial_of_bharathiraja",
+      "registered_at": "2026-06-12T05:45:10.220382+00:00"
+    },
+    {
+      "id": "quest::the_trial_of_st_james_s_hall",
+      "quest": "the_trial_of_st_james_s_hall",
+      "registered_at": "2026-06-12T05:49:43.911386+00:00"
+    },
+    {
+      "id": "module::quest_assets_the_trial_of_st_james_s_hall",
+      "quest": "the_trial_of_st_james_s_hall",
+      "registered_at": "2026-06-12T05:49:43.911386+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_st_james_s_hall::anomaly_guardian",
+      "quest": "the_trial_of_st_james_s_hall",
+      "registered_at": "2026-06-12T05:49:43.911386+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_st_james_s_hall::avatar_of_st_james_s_hall",
+      "quest": "the_trial_of_st_james_s_hall",
+      "registered_at": "2026-06-12T05:49:43.911386+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_st_james_s_hall::the_chronicler",
+      "quest": "the_trial_of_st_james_s_hall",
+      "registered_at": "2026-06-12T05:49:43.911386+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_st_james_s_hall::lost_scout",
+      "quest": "the_trial_of_st_james_s_hall",
+      "registered_at": "2026-06-12T05:49:43.911386+00:00"
+    },
+    {
+      "id": "item::the_trial_of_st_james_s_hall::relic_of_st_james_s_hall",
+      "quest": "the_trial_of_st_james_s_hall",
+      "registered_at": "2026-06-12T05:49:43.911386+00:00"
+    },
+    {
+      "id": "item::the_trial_of_st_james_s_hall::health_potion",
+      "quest": "the_trial_of_st_james_s_hall",
+      "registered_at": "2026-06-12T05:49:43.911386+00:00"
+    },
+    {
+      "id": "quest::the_trial_of_2026_fifa_world_cup",
+      "quest": "the_trial_of_2026_fifa_world_cup",
+      "registered_at": "2026-06-12T06:36:26.863814+00:00"
+    },
+    {
+      "id": "module::quest_assets_the_trial_of_2026_fifa_world_cup",
+      "quest": "the_trial_of_2026_fifa_world_cup",
+      "registered_at": "2026-06-12T06:36:26.863814+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_2026_fifa_world_cup::anomaly_guardian",
+      "quest": "the_trial_of_2026_fifa_world_cup",
+      "registered_at": "2026-06-12T06:36:26.863814+00:00"
+    },
+    {
+      "id": "enemy::the_trial_of_2026_fifa_world_cup::avatar_of_2026_fifa_world_cup",
+      "quest": "the_trial_of_2026_fifa_world_cup",
+      "registered_at": "2026-06-12T06:36:26.863814+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_2026_fifa_world_cup::the_chronicler",
+      "quest": "the_trial_of_2026_fifa_world_cup",
+      "registered_at": "2026-06-12T06:36:26.863814+00:00"
+    },
+    {
+      "id": "npc::the_trial_of_2026_fifa_world_cup::lost_scout",
+      "quest": "the_trial_of_2026_fifa_world_cup",
+      "registered_at": "2026-06-12T06:36:26.863814+00:00"
+    },
+    {
+      "id": "item::the_trial_of_2026_fifa_world_cup::relic_of_2026_fifa_world_cup",
+      "quest": "the_trial_of_2026_fifa_world_cup",
+      "registered_at": "2026-06-12T06:36:26.863814+00:00"
+    },
+    {
+      "id": "item::the_trial_of_2026_fifa_world_cup::health_potion",
+      "quest": "the_trial_of_2026_fifa_world_cup",
+      "registered_at": "2026-06-12T06:36:26.863814+00:00"
+    }
+  ]
+}

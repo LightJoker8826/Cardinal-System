@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CARDINAL SYSTEM — Live Operations</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+  :root {
+    --bg:#0a0e14; --panel:#11161f; --border:#1f2733; --text:#c9d4e3;
+    --dim:#5c6b80; --accent:#4fc3f7; --good:#46d39a; --warn:#f4bf4f;
+    --bad:#ef5b6e; --purple:#b08ff5; --admin:#f4bf4f;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font:13px/1.45 "Cascadia Code","Consolas",monospace; }
+  header { display:flex; align-items:center; gap:16px; padding:14px 22px;
+           border-bottom:1px solid var(--border); position:sticky; top:0;
+           background:rgba(10,14,20,.95); z-index:10; }
+  header h1 { font-size:16px; margin:0; letter-spacing:3px; color:var(--accent); }
+  .pulse { width:9px; height:9px; border-radius:50%; background:var(--good);
+           animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+  .stat { color:var(--dim); } .stat b { color:var(--text); }
+  #ghostBtn { margin-left:auto; background:transparent; color:var(--purple);
+              border:1px solid var(--purple); padding:5px 14px; cursor:pointer;
+              font:inherit; border-radius:3px; }
+  #ghostBtn.on { background:var(--purple); color:var(--bg); }
+  #anomalyBanner { display:none; background:var(--bad); color:#fff;
+                   padding:6px 22px; font-weight:bold; }
+  #axiomBanner { display:none; background:#8b0000; color:#fff;
+                 padding:8px 22px; font-weight:bold; letter-spacing:1px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(380px,1fr));
+          gap:14px; padding:16px 22px; }
+  .panel { background:var(--panel); border:1px solid var(--border);
+           border-radius:6px; padding:12px 14px; min-height:120px; max-height:340px;
+           overflow-y:auto; }
+  .panel h2 { margin:0 0 8px; font-size:12px; letter-spacing:2px;
+              color:var(--accent); text-transform:uppercase; }
+  .panel.admin-panel h2 { color:var(--admin); }
+  .panel.admin-panel { border-color:var(--admin); }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  td,th { padding:3px 6px; text-align:left; border-bottom:1px solid var(--border); }
+  th { color:var(--dim); font-weight:normal; }
+  .ok { color:var(--good); } .warn { color:var(--warn); }
+  .bad { color:var(--bad); } .purple { color:var(--purple); }
+  .dim { color:var(--dim); }
+  .playing { color:var(--good); font-weight:bold; animation:pulse 1s infinite; }
+  .feed-item { padding:5px 0; border-bottom:1px solid var(--border); }
+  .tag { display:inline-block; padding:0 6px; border-radius:3px; font-size:11px;
+         border:1px solid currentColor; margin-right:6px; }
+  #mapGrid { display:grid; grid-template-columns:repeat(10,1fr); gap:2px; }
+  .cell { aspect-ratio:1; background:#161d29; border-radius:2px; position:relative;
+          font-size:10px; display:flex; align-items:center; justify-content:center; }
+  .cell.safe { background:#16291f; }
+  .cell .ghost { color:var(--purple); opacity:.8; }
+  .cell .incarnate { color:var(--warn); }
+  .replay-row { cursor:pointer; } .replay-row:hover { background:#1a2330; }
+  #replayModal { display:none; position:fixed; inset:5% 10%; background:var(--panel);
+                 border:1px solid var(--accent); border-radius:8px; padding:20px;
+                 overflow-y:auto; z-index:50; }
+  #replayModal pre { background:#0d1219; padding:10px; overflow-x:auto;
+                     white-space:pre-wrap; font-size:11px; }
+  #modalClose { float:right; cursor:pointer; color:var(--bad); }
+  .hidden-ghost { display:none !important; }
+  .spendbar { height:8px; background:#1a2330; border-radius:4px; overflow:hidden; }
+  .spendbar div { height:100%; background:var(--good); }
+</style>
+</head>
+<body>
+<header>
+  <div class="pulse" id="pulse"></div>
+  <h1>CARDINAL SYSTEM</h1>
+  <span class="stat">Gini <b id="hGini">–</b></span>
+  <span class="stat">players <b id="hPlayers">–</b></span>
+  <span class="stat">version <b id="hVersion">–</b></span>
+  <span class="stat">spend <b id="hSpend">–</b></span>
+  <button id="ghostBtn" onclick="toggleGhost()">GHOST MODE</button>
+</header>
+<div id="anomalyBanner">ANOMALY DETECTED — telemetry unmasked</div>
+<div id="axiomBanner">AXIOM BREACH — simulation rolled back</div>
+
+<div class="grid" id="panels">
+  <div class="panel" style="grid-column:span 2"><h2>Gini Coefficient — live</h2>
+    <canvas id="giniChart" height="90"></canvas></div>
+  <div class="panel"><h2>Bots</h2><div id="botsPanel"></div></div>
+  <div class="panel"><h2>Bug Detection &amp; Patch Feed</h2><div id="bugsPanel"></div></div>
+  <div class="panel"><h2>Sub-Process Gate Activity</h2><div id="gatePanel"></div></div>
+  <div class="panel"><h2>Balance Changes</h2><div id="balancePanel"></div></div>
+  <div class="panel"><h2>Active Quests</h2><div id="questsPanel"></div></div>
+  <div class="panel"><h2>Fluctlight Memory — pain</h2><div id="fluctlightPanel"></div></div>
+  <div class="panel"><h2>Survivor Biographies</h2><div id="survivorsPanel"></div></div>
+  <div class="panel"><h2>Community Sentiment</h2><div id="sentimentPanel"></div></div>
+  <div class="panel"><h2>World Map — ghosts &amp; incarnations</h2><div id="mapGrid"></div></div>
+  <div class="panel"><h2>Agent Log — Fable 5 calls</h2><div id="agentPanel"></div></div>
+  <div class="panel"><h2>Version History</h2><div id="versionsPanel"></div></div>
+  <div class="panel"><h2>Replay Browser <span class="dim">(click a row)</span></h2>
+    <div id="replayPanel"></div></div>
+  <div class="panel admin-panel"><h2>⚠ Admin Overrides — manual interventions</h2>
+    <div id="adminPanel"></div></div>
+  <div class="panel"><h2>MHCP — mental state monitor</h2><div id="mhcpPanel"></div></div>
+  <div class="panel"><h2>API Spend Guard</h2><div id="spendPanel"></div></div>
+</div>
+
+<div id="replayModal">
+  <span id="modalClose" onclick="document.getElementById('replayModal').style.display='none'">✕ close</span>
+  <div id="replayDetail"></div>
+</div>
+
+<script>
+let ghostMode = false, ghostInitialized = false;
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const SAFE_ZONES = [{x0:0,x1:2,y0:0,y1:2},{x0:8,x1:9,y0:8,y1:9}];
+
+const chart = new Chart(document.getElementById("giniChart"), {
+  type: "line",
+  data: { labels: [], datasets: [
+    { label:"Gini", data: [], borderColor:"#4fc3f7", backgroundColor:"rgba(79,195,247,.12)",
+      fill:true, tension:.3, pointRadius:0 },
+    { label:"danger", data: [], borderColor:"#ef5b6e", borderDash:[6,4], pointRadius:0 }]},
+  options: { animation:false, scales:{ y:{ min:0, max:1, ticks:{color:"#5c6b80"}, grid:{color:"#1f2733"}},
+             x:{ ticks:{display:false}, grid:{display:false}}},
+             plugins:{ legend:{display:false}}}
+});
+const liveGini = [];
+
+function toggleGhost(force) {
+  ghostMode = force !== undefined ? force : !ghostMode;
+  document.getElementById("ghostBtn").classList.toggle("on", ghostMode);
+  applyGhost(window._lastAnomaly || false);
+}
+function applyGhost(anomaly) {
+  const hide = ghostMode && !anomaly;
+  document.getElementById("panels").classList.toggle("hidden-ghost", hide);
+  document.getElementById("anomalyBanner").style.display =
+    (ghostMode && anomaly) ? "block" : "none";
+}
+
+function rows(items, cols, cls) {
+  if (!items || !items.length) return '<span class="dim">— nothing yet —</span>';
+  let h = "<table><tr>" + cols.map(c=>`<th>${c.h}</th>`).join("") + "</tr>";
+  for (const it of items) {
+    h += `<tr class="${cls ? cls(it) : ""}" ${it._click ? `onclick="${it._click}"` : ""}>` +
+         cols.map(c=>`<td>${c.f(it)}</td>`).join("") + "</tr>";
+  }
+  return h + "</table>";
+}
+
+function update(s) {
+  window._lastAnomaly = s.anomaly;
+  if (!ghostInitialized) { ghostInitialized = true; if (s.ghost_default) toggleGhost(true); }
+  applyGhost(s.anomaly || s.axiom_active);
+  document.getElementById("axiomBanner").style.display = s.axiom_active ? "block" : "none";
+  if (s.axiom_active && s.axiom_emergency) {
+    document.getElementById("axiomBanner").textContent =
+      "AXIOM BREACH — " + (s.axiom_emergency.law || "Taboo violation").slice(0, 120);
+  }
+
+  document.getElementById("hGini").textContent = s.gini.toFixed(3);
+  document.getElementById("hGini").className = s.gini > s.gini_danger ? "bad" : "ok";
+  document.getElementById("hPlayers").textContent = s.players;
+  document.getElementById("hVersion").textContent = s.versions.length ? "v"+s.versions[0].id : "v0";
+  document.getElementById("hSpend").textContent =
+    s.spend ? `$${s.spend.spend_usd.toFixed(2)}` : "$0.00";
+
+  liveGini.push(s.gini); if (liveGini.length > 120) liveGini.shift();
+  chart.data.labels = liveGini.map((_,i)=>i);
+  chart.data.datasets[0].data = liveGini;
+  chart.data.datasets[1].data = liveGini.map(()=>s.gini_danger);
+  chart.update();
+
+  function botState(b) {
+    if (b.state === "running") return `<span class="playing">▶ playing</span>`;
+    if (b.state === "crashed") return `<span class="bad">crashed</span>`;
+    return `<span class="dim">idle</span>`;
+  }
+  document.getElementById("botsPanel").innerHTML = rows(s.bots, [
+    {h:"bot", f:b=>esc(b.bot_name)},
+    {h:"state", f:botState},
+    {h:"hp", f:b=>b.state==="running" ? `${b.hp}` : `<span class="dim">${b.hp||"–"}</span>`},
+    {h:"floor", f:b=>b.state==="running" ? `<b>${b.floor}</b>` : `<span class="dim">${b.floor}</span>`},
+    {h:"weapon", f:b=>b.state==="running" ? `<b>${esc(b.weapon||"–")}</b>` : esc(b.weapon||"–")},
+    {h:"gold", f:b=>b.gold},
+    {h:"games", f:b=>`${b.games_won}/${b.games_played}`}]);
+
+  document.getElementById("bugsPanel").innerHTML = rows(s.bugs, [
+    {h:"#", f:b=>b.id}, {h:"error", f:b=>esc(b.error_type)},
+    {h:"file:line", f:b=>`${esc(b.file)}:${b.line??"?"}`},
+    {h:"status", f:b=>`<span class="${b.status==='patched'?'ok':b.status==='patch_failed'?'bad':'warn'}">${esc(b.status)}</span>`}]);
+
+  document.getElementById("gatePanel").innerHTML = rows(s.gate, [
+    {h:"#", f:g=>g.id}, {h:"event", f:g=>esc(g.event_type)},
+    {h:"module", f:g=>esc(g.module)},
+    {h:"decision", f:g=>`<span class="${g.gate_decision==='approved'?'ok':'bad'}">${esc(g.gate_decision)}</span>`},
+    {h:"reasons", f:g=>`<span class="dim">${esc((g.gate_reasons||"").slice(0,60))}</span>`}]);
+
+  document.getElementById("balancePanel").innerHTML = (s.balance_changes||[]).map(b=>{
+    const fields = Object.entries(b.changed_fields||{}).map(([k,v])=>
+      `<div class="dim">${esc(k)}: ${esc(JSON.stringify(v.old))} → <span class="ok">${esc(JSON.stringify(v.new))}</span></div>`).join("");
+    return `<div class="feed-item">G ${(b.gini_before??0).toFixed(3)} → ${(b.gini_after??0).toFixed(3)}
+      <span class="dim">${esc(b.trigger_reason||"")}</span>${fields}</div>`;
+  }).join("") || '<span class="dim">— nothing yet —</span>';
+
+  document.getElementById("questsPanel").innerHTML = rows(s.quests, [
+    {h:"title", f:q=>esc(q.title)},
+    {h:"source", f:q=>`<span class="dim">${esc(q.source_name||"?")}</span>`},
+    {h:"status", f:q=>`<span class="${q.status==='active'?'ok':'bad'}">${esc(q.status)}</span>`}]);
+
+  document.getElementById("fluctlightPanel").innerHTML = rows(s.fluctlight || [], [
+    {h:"player", f:r=>esc(r.player_name)},
+    {h:"enemy", f:r=>esc(r.enemy_type)},
+    {h:"pain", f:r=>`<span class="${r.pain_memory>=0.3?'warn':'dim'}">${Number(r.pain_memory).toFixed(2)}</span>`},
+    {h:"kills", f:r=>r.kills_by_player},
+    {h:"losses", f:r=>r.losses_to_player},
+    {h:"weapon", f:r=>esc(r.dominant_weapon||"–")},
+    {h:"entity", f:r=>`<span class="dim">${esc((r.last_entity_id||"").slice(0,12))}</span>`}]);
+
+  document.getElementById("survivorsPanel").innerHTML = rows(s.survivors || [], [
+    {h:"id", f:r=>`<span class="dim">${esc(r.entity_id)}</span>`},
+    {h:"type", f:r=>esc(r.enemy_type)},
+    {h:"epithet", f:r=>r.epithet ? `<b>${esc(r.epithet)}</b>` : "–"},
+    {h:"surv", f:r=>r.survival_count},
+    {h:"exp", f:r=>r.experience_count},
+    {h:"biography", f:r=>`<span class="dim">${esc(r.biography_excerpt||"–")}</span>`}]);
+
+  document.getElementById("sentimentPanel").innerHTML = rows(s.sentiment, [
+    {h:"topic", f:x=>`<a href="${esc(x.post_url)}" target="_blank" style="color:inherit">${esc(x.topic.slice(0,42))}</a>`},
+    {h:"score", f:x=>`<span class="${x.sentiment_score>0.2?'ok':x.sentiment_score<-0.2?'bad':'dim'}">${x.sentiment_score.toFixed(2)}</span>`},
+    {h:"engage", f:x=>x.engagement_weight.toFixed(2)},
+    {h:"routed", f:x=>`<span class="dim">${esc(x.routed_to||"")}</span>`}]);
+
+  // map grid
+  const ghostsAt = {}, incAt = {};
+  for (const g of (s.ghosts||[])) ghostsAt[`${g.x},${g.y}`] = g.player_name;
+  for (const i of (s.incarnates||[]).slice(0,3)) if (i.x!==null) incAt[`${i.x},${i.y}`] = i.player_name;
+  let mapHtml = "";
+  for (let y=0; y<10; y++) for (let x=0; x<10; x++) {
+    const safe = SAFE_ZONES.some(z=>x>=z.x0&&x<=z.x1&&y>=z.y0&&y<=z.y1);
+    const key = `${x},${y}`;
+    let inner = "";
+    if (incAt[key]) inner = `<span class="incarnate" title="Incarnate: ${esc(incAt[key])}">✦</span>`;
+    else if (ghostsAt[key]) inner = `<span class="ghost" title="echo of ${esc(ghostsAt[key])}">◌</span>`;
+    mapHtml += `<div class="cell ${safe?'safe':''}">${inner}</div>`;
+  }
+  document.getElementById("mapGrid").innerHTML = mapHtml;
+
+  document.getElementById("agentPanel").innerHTML = rows(s.agent, [
+    {h:"module", f:a=>esc(a.module)}, {h:"action", f:a=>esc(a.action)},
+    {h:"provider", f:a=>`<span class="${a.provider==='anthropic'?'purple':'dim'}">${esc(a.provider)}</span>`},
+    {h:"tokens", f:a=>a.tokens_used}, {h:"cost", f:a=>`$${(a.cost_usd||0).toFixed(4)}`},
+    {h:"asked → got", f:a=>`<span class="dim" title="${esc(a.input_summary)}\n---\n${esc(a.output_summary)}">${esc((a.input_summary||"").slice(0,30))} → ${esc((a.output_summary||"").slice(0,30))}</span>`}]);
+
+  document.getElementById("versionsPanel").innerHTML = rows(s.versions, [
+    {h:"v", f:v=>"v"+v.id}, {h:"module", f:v=>esc(v.triggered_by)},
+    {h:"mutation", f:v=>esc(v.mutation_type)},
+    {h:"summary", f:v=>`<span class="dim">${esc((v.mutation_summary||"").slice(0,52))}</span>`}]);
+
+  document.getElementById("replayPanel").innerHTML = rows(
+    (s.gate||[]).map(g=>({...g, _click:`openReplay(${g.id})`})), [
+    {h:"#", f:g=>g.id}, {h:"event", f:g=>esc(g.event_type)},
+    {h:"decision", f:g=>`<span class="${g.gate_decision==='approved'?'ok':'bad'}">${esc(g.gate_decision)}</span>`},
+    {h:"time", f:g=>`<span class="dim">${esc((g.timestamp||"").slice(11,19))}</span>`}],
+    ()=> "replay-row");
+
+  document.getElementById("adminPanel").innerHTML = (s.admin||[]).map(a=>
+    `<div class="feed-item"><span class="tag warn">MANUAL</span><b>${esc(a.action_type)}</b>
+     <span class="dim">${esc(a.payload_json)}</span><br>
+     <span class="warn">reason: ${esc(a.reason)}</span></div>`).join("")
+    || '<span class="dim">— no manual interventions — Cardinal is fully autonomous —</span>';
+
+  document.getElementById("mhcpPanel").innerHTML = rows(s.mhcp, [
+    {h:"player", f:m=>esc(m.player_name)},
+    {h:"distress", f:m=>`<span class="${m.critical?'bad':m.distress_index>0.5?'warn':'ok'}">${m.distress_index.toFixed(2)}</span>`},
+    {h:"intervention", f:m=>esc(m.intervention||"")}]);
+
+  const sp = s.spend, pct = sp ? Math.min(100, 100*sp.spend_usd/(s.max_spend||1)) : 0;
+  document.getElementById("spendPanel").innerHTML = sp ?
+    `<div>$${sp.spend_usd.toFixed(2)} / $${s.max_spend.toFixed(2)} (${pct.toFixed(0)}%)
+       ${sp.locked_out ? '<span class="bad">L3 LOCKED OUT</span>' :
+         sp.warned_80 ? '<span class="warn">L2-only (80%)</span>' : '<span class="ok">nominal</span>'}</div>
+     <div class="spendbar"><div style="width:${pct}%;background:${pct>=100?'var(--bad)':pct>=80?'var(--warn)':'var(--good)'}"></div></div>
+     <div class="dim">${sp.calls} L3 call(s) today — resets at midnight</div>`
+    : '<span class="dim">no L3 calls today — running free on L2/Mock</span>';
+}
+
+async function openReplay(id) {
+  const r = await fetch(`/api/replay/${id}`); if (!r.ok) return;
+  const d = await r.json();
+  document.getElementById("replayDetail").innerHTML =
+    `<h2 style="color:var(--accent)">Replay #${d.id} — ${esc(d.event_type)} (${esc(d.module)})</h2>
+     <p>decision: <span class="${d.gate_decision==='approved'?'ok':'bad'}">${esc(d.gate_decision)}</span>
+        — ${esc(d.gate_reasons||"")}<br><span class="dim">${esc(d.timestamp)}</span></p>
+     <h3>State delta</h3><pre>${esc((d.state_delta||[]).join("\n"))}</pre>
+     ${d.llm_input ? `<h3>Exact LLM input</h3><pre>${esc(d.llm_input)}</pre>` : ""}
+     ${d.llm_output ? `<h3>Exact LLM output</h3><pre>${esc(d.llm_output)}</pre>` : ""}`;
+  document.getElementById("replayModal").style.display = "block";
+}
+
+const source = new EventSource("/events");
+source.addEventListener("snapshot", e => update(JSON.parse(e.data)));
+source.onerror = () => { document.getElementById("pulse").style.background = "var(--bad)"; };
+source.onopen = () => { document.getElementById("pulse").style.background = "var(--good)"; };
+</script>
+</body>
+</html>
